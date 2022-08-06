@@ -1,37 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <title>Formulario de pedido</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container">
-      <div class="jumbotron mb-0">
-        <h1 class="display-4">Novo Pedido</h1>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de pedido</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <div class="jumbotron mb-0">
+    <h1 class="display-4">Novo Pedido</h1>
+  </div>
+  <div class="card mt-3">
+    <form th:object="${requisicaoNovoPedido}" class="card-body" action="/pedido/novo" method="post">
+      <div class="form-group">
+        <label for="nomeProduto">Produto</label>
+        <input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="nome do produto"/>
+        <small>Informe qual é o nome do produto.</small>
+        <div class="invalid-feedback" th:errors="*{nomeProduto}">Erros do nome do produto</div>
       </div>
-      <form action="/pedido/novo" method="post">
-        <div>
-          <label for="nomeProduto">Produto</label>
-          <input id="nomeProduto" name="nomeProduto" placeholder="nome do produto"/>
-          <small>Informe qual é o nome do produto.</small>
-        </div>
-        <div>
-          <label for="urlProduto">Url</label>
-          <input id="urlProduto" name="urlProduto" placeholder="url do produto"/>
-          <small>Procure em um site o produto que você deseja e cole a url da página aqui.</small>
-        </div>
-        <div>
-          <label for="urlImagem">Imagem</label>
-          <input id="urlImagem" name="urlImagem" placeholder="url da imagem"/>
-          <small>Copie a url de uma boa imagem do produto e cole aqui para ajudar a conseguir compradores</small>
-        </div>
-        <div>
-          <label for="descricao">Descrição</label>
-          <textarea id="descricao" name="descricao" placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea>
-        </div>
-          <button type="submit">Cadastrar</button>
-      </form>
-    </div>
-  </body>
+      <div class="form-group">
+        <label for="urlProduto">Url</label>
+        <input th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control" placeholder="url do produto"/>
+        <small>Procure em um site o produto que você deseja e cole a url da página aqui.</small>
+        <div class="invalid-feedback" th:errors="*{urlProduto}">Erros da url do produto</div>
+      </div>
+      <div class="form-group">
+        <label for="urlImagem">Imagem</label>
+        <input th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control" placeholder="url da imagem"/>
+        <small>Copie a url de uma boa imagem do produto e cole aqui para ajudar a conseguir compradores</small>
+        <div class="invalid-feedback" th:errors="*{urlImagem}">Erros da url da imagem</div>
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea th:field="*{descricao}" class="form-control" placeholder="Adicione detalhes importantes para ajudar o comprador"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Cadastrar</button>
+    </form>
+  </div>
+</div>
+</body>
 </html>
