@@ -24,32 +24,32 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     </style>
     <meta charset="UTF-8">
 </head>
 
-<div class="logo-container mb-3 p-3 justify-content-between d-flex"
-     th:fragment="logo">
-    <span class="logo">mudi</span>
-    <a class="align-self-center text-light" href="/login"
-       sec:authorize="!isAuthenticated()">login</a>
-    <a class="align-self-center text-light" href="#"
-       onclick="document.querySelector('#form-logout').submit()"
-       sec:authorize="isAuthenticated()">logout</a>
-    <form hidden id="form-logout" method="post" th:action="@{/logout}"></form>
+<div th:fragment="logo">
+    <div class="logo-container p-3 mx-0 justify-content-between d-flex row">
+        <span class="logo">mudi</span>
+        <a class="align-self-center text-light" href="/login"
+           sec:authorize="!isAuthenticated()">login</a>
+        <a class="align-self-center text-light" href="#"
+           onclick="document.querySelector('#form-logout').submit()"
+           sec:authorize="isAuthenticated()">logout</a>
+        <form hidden id="form-logout" method="post"
+              th:action="@{/logout}"></form>
+    </div>
+    <div class="row mx-0" sec:authorize="isAuthenticated()">
+        <div class="col">
+            <nav class="nav">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+                <a class="nav-link" th:href="@{/usuario/pedido}">Meus
+                    pedidos</a>
+            </nav>
+        </div>
+    </div>
 </div>
 
-<div class="jumbotron mb-0" th:fragment="titulo(valor)">
+<div class="jumbotron mb-2 mt-2" th:fragment="titulo(valor)">
     <h1 class="display-4" th:text="${valor}"></h1>
 </div>

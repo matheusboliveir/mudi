@@ -7,7 +7,8 @@ import java.time.LocalDate;
 @Entity
 public class Pedido {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomeProduto;
     private BigDecimal valorNegociado;
@@ -17,6 +18,8 @@ public class Pedido {
     private String descricao;
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     public String getNomeProduto() {
         return nomeProduto;
@@ -72,5 +75,13 @@ public class Pedido {
 
     public void setStatus(StatusPedido status) {
         this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
