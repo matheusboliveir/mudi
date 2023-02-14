@@ -36,6 +36,8 @@ public class WebSecurityConfig {
     public UserDetailsManager users(DataSource dataSource) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+        //UserDetails user = User.builder().username("admin").password(encoder.encode("admin")).roles("ADM").build();
+        //users.createUser(user);
         return users;
     }
 }
