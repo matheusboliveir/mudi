@@ -22,6 +22,21 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private User user;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Oferta> ofertas;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public List<Oferta> getOfertas() {
         return ofertas;
     }
@@ -29,12 +44,6 @@ public class Pedido {
     public void setOfertas(List<Oferta> ofertas) {
         this.ofertas = ofertas;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    private User user;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
-    private List<Oferta> ofertas;
 
     public String getNomeProduto() {
         return nomeProduto;
